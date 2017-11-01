@@ -1,0 +1,16 @@
+body {
+  background-color: #ddd;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.user-data-container {
+  max-width: 1024px;
+  border: 1px solid #000;
+  background-color: #fff;
+  padding: 8px 15px;
+
+  &__title {
+    font-size: 1.5em;
+  }
+}
