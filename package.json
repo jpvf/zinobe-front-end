@@ -1,0 +1,14 @@
+{
+  "name": "zinobe-front-end",
+  "version": "1.0.0",
+  "description": "Zinobe front-end test.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Christian Unigarro",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^2.2.0"
+  }
+}
