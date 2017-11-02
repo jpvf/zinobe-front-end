@@ -1,4 +1,4 @@
-let root = 'https://jsonplaceholder.typicode.com';
+let root = 'http://localhost:3004';
 
 const userService = ({method, action, data}) => {
   return new Promise((resolve, reject) => {
