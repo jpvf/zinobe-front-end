@@ -35,11 +35,16 @@ const editData = (event) => {
 
 const deleteData = (event) => {
   let thisNode = event.target;
-  let userId = thisNode.parentNode.parentNode.getAttribute('data-id');
-  let deleteUserPromise = userService('DELETE', '/users/' + userId );
+  let userNode = thisNode.parentNode.parentNode;
+  let userId = userNode.getAttribute('data-id');
+  let deleteUserPromise = userService({
+    method: 'DELETE',
+    action: '/users/' + userId
+  });
 
   deleteUserPromise.then(() => {
     console.log('usuario ' + userId +' removido');
+    userNode.parentNode.removeChild(userNode);
   });
 }
 
