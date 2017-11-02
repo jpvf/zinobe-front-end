@@ -1,4 +1,4 @@
-// Styles for view
+// Call css for view
 const css = require('./app.scss');
 
 // React components
@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 // Dev components
 import userService from './js/userService';
 import UserData from './js/userDataComponent';
+import {editData, deleteData, saveData, addData} from './js/userActions';
 
 let dataUserContainer = document.querySelector('.js-data-container');
 let getUserData = userService({
@@ -16,6 +17,21 @@ let getUserData = userService({
 });
 
 class UserList extends React.Component {
+  componentDidMount() {
+    let deleteBtn = dataUserContainer.querySelectorAll('.js-delete-btn');
+    let editBtn = dataUserContainer.querySelectorAll('.js-edit-btn');
+    let saveBtn = dataUserContainer.querySelectorAll('.js-save-btn');
+    let addDataForm = document.querySelector('.js-add-data-form');
+
+    for(var i=0; i<deleteBtn.length; i++) {
+      editBtn[i].addEventListener('click', editData);
+      deleteBtn[i].addEventListener('click', deleteData);
+      saveBtn[i].addEventListener('click', saveData);
+    }
+
+    addDataForm.addEventListener('submit', addData);
+  }
+
   render() {
     let {list} = this.props;
     return(
