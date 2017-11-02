@@ -1,16 +1,67 @@
 body {
-  background-color: #ddd;
+  background-color: #eee;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
 
-.user-data-container {
-  max-width: 1024px;
-  border: 1px solid #000;
+.data-list {
   background-color: #fff;
-  padding: 8px 15px;
+  border-radius: 6px;
+  padding: 8px;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  display: inline-block;
 
-  &__title {
-    font-size: 1.5em;
+  &__user {
+    th,
+    td {
+      list-style: none;
+      padding: 8px;
+      word-wrap: break-word;
+      border-top: 1px solid #ccc;
+
+      button {
+        cursor: pointer;
+      }
+    }
+
+    thead &:first-of-type th,
+    thead &:first-of-type td {
+      border-top: none;
+    }
+
+    tbody & input {
+      display: none;
+    }
+
+    &__actions {
+      width: 250px;
+      text-align: center;
+    }
+  }
+
+  &__edit-btn,
+  &__save-btn {
+    margin-right: 5px;
+    display: inline-block;
+    font-size: 1em;
+  }
+
+  &__save-btn {
+    display: none;
+  }
+
+  &__delete-btn {
+    font-size: 1em;
+  }
+
+  &__btn-add-user {
+    width: 100%;
+    font-size: 1em;
+  }
+
+  input {
+    width: 100%;
+    font-size: 1em;
   }
 }

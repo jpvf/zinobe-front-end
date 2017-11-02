@@ -7,10 +7,62 @@
   <title>Zinobe front-end test</title>
 </head>
 <body>
-  <div class="user-data-container">
-    <h1 class="user-data-container__title">
-      Zinobe front-end test
-    </h1>
-  </div>
+  <table class="data-list">
+    <thead>
+      <tr class="data-list__user">
+        <th>
+          #
+        </th>
+
+        <th>
+          Nombre
+        </th>
+
+        <th>
+          Nombre de usuario
+        </th>
+
+        <th>
+          Correo
+        </th>
+
+        <th>
+          Acciones
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="js-data-container"></tbody>
+
+    <tfoot>
+      <form class="js-add-data-form" method="PUT">
+        <tr class="data-list__user">
+          <td>
+            <strong>
+              #
+            </strong>
+          </td>
+
+          <td>
+            <input id="name" name="name" type="text" placeholder="Nombre" required>
+          </td>
+
+          <td>
+            <input id="name" name="name" type="text" placeholder="Nombre de usuario" required>
+          </td>
+
+          <td>
+            <input id="email" name="email" type="email" placeholder="Correo" required>
+          </td>
+
+          <td>
+            <button class="data-list__btn-add-user js-add-btn" type="submit">
+              Agregar Usuario
+            </button>
+          </td>
+        </tr>
+      </form>
+    </tfoot>
+  </table>
 </body>
 </html>
