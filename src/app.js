@@ -21,7 +21,8 @@ class UserList extends React.Component {
     let deleteBtn = dataUserContainer.querySelectorAll('.js-delete-btn');
     let editBtn = dataUserContainer.querySelectorAll('.js-edit-btn');
     let saveBtn = dataUserContainer.querySelectorAll('.js-save-btn');
-    let addDataForm = document.querySelector('.js-add-data-form');
+    let addDataContainer = document.querySelector('.js-add-data-container');
+    let addBtn = addDataContainer.querySelector('.js-add-btn');
 
     for(var i=0; i<deleteBtn.length; i++) {
       editBtn[i].addEventListener('click', editData);
@@ -29,7 +30,7 @@ class UserList extends React.Component {
       saveBtn[i].addEventListener('click', saveData);
     }
 
-    addDataForm.addEventListener('submit', addData);
+    addBtn.addEventListener('click', addData);
   }
 
   render() {

@@ -43,7 +43,6 @@ const deleteData = (event) => {
   });
 
   deleteUserPromise.then(() => {
-    console.log('usuario ' + userId +' removido');
     userNode.parentNode.removeChild(userNode);
   });
 }
@@ -54,29 +53,41 @@ const saveData = (event) => {
 
 const addData = (event) => {
   event.preventDefault();
-  console.log('add data');
+  let thisNode = event.target;
+  let addDataContainer = thisNode.parentNode.parentNode;
+  let method = 'POST';
+  let action = '/users/';
+  let data =  serialize(addDataContainer);
+  let addUserData;
+
+  if(thisNode.checkValidity()) {
+    console.log('envía data');
+    addUserData = userService({
+      method: method,
+      action: action,
+      data: data
+    });
+
+    addUserData.then((data) => {
+      let dataJson = JSON.parse(data);
+
+      console.log(dataJson);
+    });
+  }
 }
 
 // Auxiliar functions
-function serialize(form) {
-  let field, s = [];
-  if (typeof form == 'object' && form.nodeName == "FORM") {
-      let len = form.elements.length;
-      for (let i=0; i<len; i++) {
-          field = form.elements[i];
-          if (field.name && !field.disabled && field.type != 'file' && field.type != 'reset' && field.type != 'submit' && field.type != 'button') {
-              if (field.type == 'select-multiple') {
-                  for (j=form.elements[i].options.length-1; j>=0; j--) {
-                      if(field.options[j].selected)
-                          s[s.length] = encodeURIComponent(field.name) + "=" + encodeURIComponent(field.options[j].value);
-                  }
-              } else if ((field.type != 'checkbox' && field.type != 'radio') || field.checked) {
-                  s[s.length] = encodeURIComponent(field.name) + "=" + encodeURIComponent(field.value);
-              }
-          }
-      }
+function serialize(addDataContainer) {
+  let fields = addDataContainer.querySelectorAll('input');
+  let data = {};
+
+  for(let i=0; i<fields.length; i++) {
+    let name = fields[i].getAttribute('name');
+    let value = fields[i].value;
+    data[name] = value;
   }
-  return s.join('&').replace(/%20/g, '+');
+
+  return data;
 }
 
 export {editData, deleteData, saveData, addData};

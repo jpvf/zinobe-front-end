@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="" type="image/x-icon">
   <title>Zinobe front-end test</title>
 </head>
 <body>
@@ -35,33 +36,31 @@
     <tbody class="js-data-container"></tbody>
 
     <tfoot>
-      <form class="js-add-data-form" method="PUT">
-        <tr class="data-list__user">
-          <td>
-            <strong>
-              #
-            </strong>
-          </td>
+      <tr class="data-list__user js-add-data-container">
+        <td>
+          <strong>
+            #
+          </strong>
+        </td>
 
-          <td>
-            <input id="name" name="name" type="text" placeholder="Nombre" required>
-          </td>
+        <td>
+          <input id="name" name="name" type="text" placeholder="Nombre" required>
+        </td>
 
-          <td>
-            <input id="name" name="name" type="text" placeholder="Nombre de usuario" required>
-          </td>
+        <td>
+          <input id="name" name="username" type="text" placeholder="Nombre de usuario" required>
+        </td>
 
-          <td>
-            <input id="email" name="email" type="email" placeholder="Correo" required>
-          </td>
+        <td>
+          <input id="email" name="email" type="email" placeholder="Correo" required>
+        </td>
 
-          <td>
-            <button class="data-list__btn-add-user js-add-btn" type="submit">
-              Agregar Usuario
-            </button>
-          </td>
-        </tr>
-      </form>
+        <td>
+          <button class="data-list__btn-add-user js-add-btn" type="submit">
+            Agregar Usuario
+          </button>
+        </td>
+      </tr>
     </tfoot>
   </table>
 </body>
