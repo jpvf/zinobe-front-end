@@ -48,7 +48,27 @@ const deleteData = (event) => {
 }
 
 const saveData = (event) => {
-  console.log('save data');
+  let thisNode = event.target;
+  let saveDataContainer = thisNode.parentNode.parentNode;
+  let userId = saveDataContainer.getAttribute('data-id');
+  let method = 'PUT';
+  let action = '/users/' + userId;
+  let data =  serialize(saveDataContainer);
+  let saveUserData;
+
+  if(thisNode.checkValidity()) {
+    saveUserData = userService({
+      method: method,
+      action: action,
+      data: data
+    });
+
+    saveUserData.then((data) => {
+      let dataJson = JSON.parse(data);
+
+      console.log(dataJson);
+    });
+  }
 }
 
 const addData = (event) => {
