@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="" type="image/x-icon">
+  <title>Zinobe front-end test</title>
+</head>
+<body>
+  <table class="data-list">
+    <thead>
+      <tr class="data-list__user">
+        <th>
+          #
+        </th>
+
+        <th>
+          Nombre
+        </th>
+
+        <th>
+          Nombre de usuario
+        </th>
+
+        <th>
+          Correo
+        </th>
+
+        <th>
+          Acciones
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="js-data-container"></tbody>
+    <tfoot>
+      <tr class="data-list__user js-add-data-container">
+        <td>
+          <strong>
+            #
+          </strong>
+        </td>
+
+        <td>
+          <input id="name" name="name" type="text" placeholder="Nombre" form="add-data-form" required>
+        </td>
+
+        <td>
+          <input id="name" name="username" type="text" placeholder="Nombre de usuario" form="add-data-form" required>
+        </td>
+
+        <td>
+          <input id="email" name="email" type="email" placeholder="Correo" form="add-data-form" required>
+        </td>
+
+        <td>
+          <button class="data-list__btn-add-user js-add-btn" type="submit" form="add-data-form">
+            Agregar Usuario
+          </button>
+        </td>
+      </tr>
+
+      <tr class="add-data-form-validation js-add-data-form-validation">
+        <td colspan="5">
+          Todos los campos son requeridos.
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Hack to validate inputs out of form -->
+  <form method="POST" id="add-data-form" class="js-add-data-form"></form>
+</body>
+</html>
