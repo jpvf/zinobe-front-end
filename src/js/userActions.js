@@ -7,35 +7,7 @@ import userService from './userService';
 import UserList from '../app'
 
 const editData = (event) => {
-  let thisNode = event.target;
-  let userContainer = thisNode.parentNode.parentNode;
-  let labelNode = userContainer.querySelectorAll('label');
-  let inputNode = userContainer.querySelectorAll('input');
-  let saveBtn = userContainer.querySelector('.js-save-btn');
-  if(thisNode.editMode == undefined) {
-    thisNode.editMode = false;
-  }
-
-  for(let i=0; i<inputNode.length; i++) {
-    if(thisNode.editMode == false && inputNode[i].type != 'hidden') {
-      labelNode[i].style.display = 'none';
-      inputNode[i].style.display = 'inline-block';
-      inputNode[i].value = labelNode[i].textContent;
-    } else if(inputNode[i].type != 'hidden') {
-      labelNode[i].style.display = 'inline-block';
-      inputNode[i].style.display = 'none';
-    }
-  }
-
-  if(thisNode.editMode == false) {
-    thisNode.editMode = true;
-    saveBtn.style.display = 'inline-block';
-    thisNode.innerHTML = 'Cancelar';
-  } else {
-    thisNode.editMode = false;
-    saveBtn.style.display = 'none';
-    thisNode.innerHTML = 'Editar';
-  }
+  switchEdit(event.target);
 }
 
 const deleteData = (event) => {
@@ -70,9 +42,9 @@ const saveData = (event) => {
 
     saveUserData.then((data) => {
       let dataJson = JSON.parse(data);
-
-      console.log(dataJson);
       refreshUserData();
+      var editBtn = saveDataContainer.querySelector('.js-edit-btn');
+      switchEdit(editBtn);
     });
   }
 }
@@ -87,7 +59,6 @@ const addData = (event) => {
   let addUserData;
 
   if(thisNode.checkValidity()) {
-    console.log('envía data');
     addUserData = userService({
       method: method,
       action: action,
@@ -96,8 +67,6 @@ const addData = (event) => {
 
     addUserData.then((data) => {
       let dataJson = JSON.parse(data);
-
-      console.log(dataJson);
       refreshUserData();
     });
   }
@@ -118,6 +87,37 @@ const refreshUserData = () => {
       dataUserContainer
     );
   });
+}
+
+const switchEdit = (thisNode) => {
+  let userContainer = thisNode.parentNode.parentNode;
+  let labelNode = userContainer.querySelectorAll('label');
+  let inputNode = userContainer.querySelectorAll('input');
+  let saveBtn = userContainer.querySelector('.js-save-btn');
+  if(thisNode.editMode == undefined) {
+    thisNode.editMode = false;
+  }
+
+  for(let i=0; i<inputNode.length; i++) {
+    if(thisNode.editMode == false && inputNode[i].type != 'hidden') {
+      labelNode[i].style.display = 'none';
+      inputNode[i].style.display = 'inline-block';
+      inputNode[i].value = labelNode[i].textContent;
+    } else if(inputNode[i].type != 'hidden') {
+      labelNode[i].style.display = 'inline-block';
+      inputNode[i].style.display = 'none';
+    }
+  }
+
+  if(thisNode.editMode == false) {
+    thisNode.editMode = true;
+    saveBtn.style.display = 'inline-block';
+    thisNode.innerHTML = 'Cancelar';
+  } else {
+    thisNode.editMode = false;
+    saveBtn.style.display = 'none';
+    thisNode.innerHTML = 'Editar';
+  }
 }
 
 // Auxiliar functions
