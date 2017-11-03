@@ -1,4 +1,4 @@
-## Instrucciones para visualizar la prueba desarrollada
+## Instrucciones sobre instalación y visualización del proyecto
 
 1. Instalar node js 6.11.1 con npm (node package manager).
 
