@@ -58,3 +58,5 @@ getUserData.then((data) => {
     dataUserContainer
   );
 });
+
+export default UserList;

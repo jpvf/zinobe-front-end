@@ -1,5 +1,10 @@
+// React components
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+// Dev components
 import userService from './userService';
+import UserList from '../app'
 
 const editData = (event) => {
   let thisNode = event.target;
@@ -43,7 +48,7 @@ const deleteData = (event) => {
   });
 
   deleteUserPromise.then(() => {
-    userNode.parentNode.removeChild(userNode);
+    refreshUserData();
   });
 }
 
@@ -67,6 +72,7 @@ const saveData = (event) => {
       let dataJson = JSON.parse(data);
 
       console.log(dataJson);
+      refreshUserData();
     });
   }
 }
@@ -92,12 +98,30 @@ const addData = (event) => {
       let dataJson = JSON.parse(data);
 
       console.log(dataJson);
+      refreshUserData();
     });
   }
 }
 
+const refreshUserData = () => {
+  let dataUserContainer = document.querySelector('.js-data-container');
+  let getUserData = userService({
+    method: 'GET',
+    action: '/users'
+  });
+
+  getUserData.then((data) => {
+    let dataJson = JSON.parse(data);
+
+    ReactDOM.render(
+      <UserList list={dataJson}/>,
+      dataUserContainer
+    );
+  });
+}
+
 // Auxiliar functions
-function serialize(addDataContainer) {
+const serialize = (addDataContainer) => {
   let fields = addDataContainer.querySelectorAll('input');
   let data = {};
 
