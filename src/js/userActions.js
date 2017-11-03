@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import userService from './userService';
 import UserList from '../app'
 
+// Basic functions
 const editData = (event) => {
   switchEdit(event.target);
 }
@@ -67,11 +68,17 @@ const addData = (event) => {
 
     addUserData.then((data) => {
       let dataJson = JSON.parse(data);
+      let fields = addDataContainer.querySelectorAll('input');
       refreshUserData();
+
+      for(let i=0; i<fields.length; i++) {
+        fields[i].value = '';
+      }
     });
   }
 }
 
+// Auxiliar functions
 const refreshUserData = () => {
   let dataUserContainer = document.querySelector('.js-data-container');
   let getUserData = userService({
@@ -89,17 +96,17 @@ const refreshUserData = () => {
   });
 }
 
-const switchEdit = (thisNode) => {
-  let userContainer = thisNode.parentNode.parentNode;
+const switchEdit = (editNode) => {
+  let userContainer = editNode.parentNode.parentNode;
   let labelNode = userContainer.querySelectorAll('label');
   let inputNode = userContainer.querySelectorAll('input');
   let saveBtn = userContainer.querySelector('.js-save-btn');
-  if(thisNode.editMode == undefined) {
-    thisNode.editMode = false;
+  if(editNode.editMode == undefined) {
+    editNode.editMode = false;
   }
 
   for(let i=0; i<inputNode.length; i++) {
-    if(thisNode.editMode == false && inputNode[i].type != 'hidden') {
+    if(editNode.editMode == false && inputNode[i].type != 'hidden') {
       labelNode[i].style.display = 'none';
       inputNode[i].style.display = 'inline-block';
       inputNode[i].value = labelNode[i].textContent;
@@ -109,18 +116,18 @@ const switchEdit = (thisNode) => {
     }
   }
 
-  if(thisNode.editMode == false) {
-    thisNode.editMode = true;
+  if(editNode.editMode == false) {
+    editNode.editMode = true;
     saveBtn.style.display = 'inline-block';
-    thisNode.innerHTML = 'Cancelar';
+    editNode.innerHTML = 'Cancelar';
   } else {
-    thisNode.editMode = false;
+    editNode.editMode = false;
     saveBtn.style.display = 'none';
-    thisNode.innerHTML = 'Editar';
+    editNode.innerHTML = 'Editar';
   }
 }
 
-// Auxiliar functions
+// Utilities functions
 const serialize = (addDataContainer) => {
   let fields = addDataContainer.querySelectorAll('input');
   let data = {};
