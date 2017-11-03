@@ -17,7 +17,7 @@ let getUserData = userService({
 });
 
 class UserList extends React.Component {
-  componentDidMount() {
+  updateBindings() {
     let deleteBtn = dataUserContainer.querySelectorAll('.js-delete-btn');
     let editBtn = dataUserContainer.querySelectorAll('.js-edit-btn');
     let saveBtn = dataUserContainer.querySelectorAll('.js-save-btn');
@@ -31,6 +31,14 @@ class UserList extends React.Component {
     }
 
     addBtn.addEventListener('click', addData);
+  }
+
+  componentDidMount() {
+    this.updateBindings();
+  }
+
+  componentDidUpdate() {
+    this.updateBindings();
   }
 
   render() {
