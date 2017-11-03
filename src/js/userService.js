@@ -1,4 +1,4 @@
-let root = 'http://localhost:3004';
+let root = 'http://' + location.hostname + ':3004';
 
 const userService = ({method, action, data}) => {
   return new Promise((resolve, reject) => {

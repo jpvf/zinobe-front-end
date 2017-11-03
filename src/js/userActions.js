@@ -34,20 +34,18 @@ const saveData = (event) => {
   let data =  serialize(saveDataContainer);
   let saveUserData;
 
-  if(thisNode.checkValidity()) {
-    saveUserData = userService({
-      method: method,
-      action: action,
-      data: data
-    });
+  saveUserData = userService({
+    method: method,
+    action: action,
+    data: data
+  });
 
-    saveUserData.then((data) => {
-      let dataJson = JSON.parse(data);
-      refreshUserData();
-      var editBtn = saveDataContainer.querySelector('.js-edit-btn');
-      switchEdit(editBtn);
-    });
-  }
+  saveUserData.then((data) => {
+    let dataJson = JSON.parse(data);
+    refreshUserData();
+    var editBtn = saveDataContainer.querySelector('.js-edit-btn');
+    switchEdit(editBtn);
+  });
 }
 
 const addData = (event) => {
