@@ -54,12 +54,14 @@ const addData = (event) => {
   event.preventDefault();
   let thisNode = event.target;
   let addDataContainer = thisNode.parentNode.parentNode;
-  let method = 'POST';
+  let addDataForm = document.querySelector('.js-add-data-form');
+  let addDataFormValidation = document.querySelector('.js-add-data-form-validation');
+  let method = addDataForm.getAttribute('method');
   let action = '/users/';
   let data =  serialize(addDataContainer);
   let addUserData;
 
-  if(thisNode.checkValidity()) {
+  if(addDataForm.checkValidity()) {
     addUserData = userService({
       method: method,
       action: action,
@@ -75,6 +77,10 @@ const addData = (event) => {
         fields[i].value = '';
       }
     });
+
+    addDataFormValidation.classList.remove('visible');
+  } else {
+    addDataFormValidation.classList.add('visible');
   }
 }
 

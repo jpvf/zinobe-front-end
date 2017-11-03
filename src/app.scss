@@ -65,3 +65,13 @@ body {
     font-size: 1em;
   }
 }
+
+.add-data-form-validation {
+  color: red;
+  font-size: 0.85em;
+  display: none;
+}
+
+.add-data-form-validation.visible {
+  display: table-row;
+}
